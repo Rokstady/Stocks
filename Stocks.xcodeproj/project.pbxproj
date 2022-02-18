@@ -24,6 +24,9 @@
 		C49EA56D2785E4FE002D5F6A /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49EA56C2785E4FE002D5F6A /* PersistenceManager.swift */; };
 		C49EA56F278688FE002D5F6A /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49EA56E278688FE002D5F6A /* HapticsManager.swift */; };
 		C4C83C0B27A2D5B80007F8C9 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C83C0A27A2D5B80007F8C9 /* SearchResponse.swift */; };
+		C4DBA96427AC70ED00578C0E /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBA96327AC70EC00578C0E /* MarketDataResponse.swift */; };
+		C4DBA96627AC8E9F00578C0E /* WatchListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBA96527AC8E9F00578C0E /* WatchListTableViewCell.swift */; };
+		C4DBA96827AC98BB00578C0E /* StockChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4DBA96727AC98BB00578C0E /* StockChartView.swift */; };
 		F4E5BF9C24AD7424259703A0 /* Pods_Stocks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E467EC591A426ADFD4EB91D /* Pods_Stocks.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,9 @@
 		C49EA56C2785E4FE002D5F6A /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		C49EA56E278688FE002D5F6A /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		C4C83C0A27A2D5B80007F8C9 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		C4DBA96327AC70EC00578C0E /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
+		C4DBA96527AC8E9F00578C0E /* WatchListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchListTableViewCell.swift; sourceTree = "<group>"; };
+		C4DBA96727AC98BB00578C0E /* StockChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockChartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 			children = (
 				C4C83C0A27A2D5B80007F8C9 /* SearchResponse.swift */,
 				C4523A6C27A84E790095283E /* NewsStory.swift */,
+				C4DBA96327AC70EC00578C0E /* MarketDataResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,6 +135,8 @@
 				C4375386279EC68E00EDE5D0 /* SearchResultTableViewCell.swift */,
 				C489E86E27A70309000CB16A /* NewsHeaderView.swift */,
 				C4523A6E27A8946E0095283E /* NewsStoryTableViewCell.swift */,
+				C4DBA96527AC8E9F00578C0E /* WatchListTableViewCell.swift */,
+				C4DBA96727AC98BB00578C0E /* StockChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4DBA96427AC70ED00578C0E /* MarketDataResponse.swift in Sources */,
 				C49EA56F278688FE002D5F6A /* HapticsManager.swift in Sources */,
 				C4375387279EC68E00EDE5D0 /* SearchResultTableViewCell.swift in Sources */,
 				C49EA5692785E0B5002D5F6A /* StockDetailsViewController.swift in Sources */,
@@ -287,11 +297,13 @@
 				C4523A6D27A84E790095283E /* NewsStory.swift in Sources */,
 				C411C0C8279B384F000F7087 /* Extensions.swift in Sources */,
 				C4523A6F27A8946F0095283E /* NewsStoryTableViewCell.swift in Sources */,
+				C4DBA96827AC98BB00578C0E /* StockChartView.swift in Sources */,
 				C49EA56B2785E395002D5F6A /* APICaller.swift in Sources */,
 				C4C83C0B27A2D5B80007F8C9 /* SearchResponse.swift in Sources */,
 				C489E86F27A70309000CB16A /* NewsHeaderView.swift in Sources */,
 				C49EA54C2785DF0A002D5F6A /* AppDelegate.swift in Sources */,
 				C49EA54E2785DF0A002D5F6A /* SceneDelegate.swift in Sources */,
+				C4DBA96627AC8E9F00578C0E /* WatchListTableViewCell.swift in Sources */,
 				C49EA5672785E0A1002D5F6A /* SearchResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
