@@ -68,11 +68,11 @@ final class APICaller {
     
     public func marketData (
         for symbol: String,
-        numerOfDays: TimeInterval = 7,
+        numberOfDays: TimeInterval = 7,
         completion: @escaping (Result<MarketDataResponse,Error>) -> Void
     ) {
         let today = Date().addingTimeInterval(-(Constants.day))
-        let prior = today.addingTimeInterval(-(Constants.day * numerOfDays))
+        let prior = today.addingTimeInterval(-(Constants.day * numberOfDays))
         request(
             url: url(
                 for: .marketData,
@@ -88,6 +88,20 @@ final class APICaller {
         )
     }
     
+    public func financialMetrics(
+        for symbol: String,
+        completion: @escaping(Result<FinancialMetricsResponse, Error>) -> Void
+    ) {
+        request(
+            url: url(
+                for: .financials,
+                   queryParams: ["symbol": symbol, "metric": "all"]
+            ),
+            expecting: FinancialMetricsResponse.self,
+            completion: completion
+        )
+    }
+    
     // MARK: - Private
     
     private enum Endpoint: String {
@@ -95,6 +109,7 @@ final class APICaller {
         case topStories = "news"
         case companyNews = "company-news"
         case marketData = "stock/candle"
+        case financials = "stock/metric"
     }
     
     private enum APIError: Error {
