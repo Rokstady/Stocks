@@ -88,13 +88,12 @@ class StockDetailsViewController: UIViewController {
     private func fetchFinancialData() {
         let group = DispatchGroup()
         
-        if !candleStickData.isEmpty {
+        if candleStickData.isEmpty {
             group.enter()
             APICaller.shared.marketData(for: symbol) { [weak self] result in
                 defer {
                     group.leave()
                 }
-                
                 switch result {
                 case .success(let response):
                     self?.candleStickData = response.candleSticks
@@ -105,7 +104,7 @@ class StockDetailsViewController: UIViewController {
         }
         
         group.enter()
-        APICaller.shared.financialMetrics(for: symbol) { [weak self]result  in
+        APICaller.shared.financialMetrics(for: symbol) { [weak self] result  in
             defer {
                 group.leave()
             }
@@ -150,7 +149,7 @@ class StockDetailsViewController: UIViewController {
         var viewModels = [MetricCollectionViewCell.ViewModel]()
         if let metrics = metrics {
             viewModels.append(.init(name: "52W High", value: "\(metrics.AnnualWeekHigh)"))
-            viewModels.append(.init(name: "52L Low", value: "\(metrics.AnnualWeekLow)"))
+            viewModels.append(.init(name: "52L High", value: "\(metrics.AnnualWeekLow)"))
             viewModels.append(.init(name: "52W Return", value: "\( metrics.AnnualWeekPriceReturnDaily)"))
             viewModels.append(.init(name: "52W High", value: "\(metrics.beta)"))
             viewModels.append(.init(name: "10D Vol.", value: "\(metrics.TenDayAverageTradingVolume)"))
@@ -162,7 +161,7 @@ class StockDetailsViewController: UIViewController {
                 data: candleStickData.reversed().map { $0.close },
                 showLegend: true,
                 showAxis: true,
-                fillColor: change < 0 ? .systemRed: .systemGreen
+                fillColor: change < 0 ? .systemRed : .systemGreen
             ),
             metricViewModels: viewModels
         )
