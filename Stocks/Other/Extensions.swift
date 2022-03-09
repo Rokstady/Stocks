@@ -11,12 +11,14 @@ import UIKit
 //MARK: - Notification
 
 extension Notification.Name {
+    /// Notification for when symbol get added to watchlist
     static let didAddToWatchList = Notification.Name("didAddToWatchList")
 }
 
 //MARK: - NumberFormatter
 
 extension NumberFormatter {
+    /// Formatter for percent style
     static let percentFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.locale = .current
@@ -25,6 +27,7 @@ extension NumberFormatter {
         return formatter
     }()
     
+    /// Formatter for decimal style
     static let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.locale = .current
@@ -36,6 +39,8 @@ extension NumberFormatter {
 
 //MARK: - ImageView
 extension UIImageView {
+    /// Sets image from remote url
+    /// - Parameter url: URL to fetch from
     func setImage(with url: URL?) {
         guard let url = url else {
             return
@@ -58,11 +63,17 @@ extension UIImageView {
 //MARK: - String
 
 extension String {
+    /// Create string from time interval
+    /// - Parameter timeInterval: Time interval since 1970
+    /// - Returns: Formatted string
     static func string(from timeInterval: TimeInterval) -> String {
         let date = Date(timeIntervalSince1970: timeInterval)
         return DateFormatter.prettyNewsDateFormatter.string(from: date)
     }
     
+    /// <#Description#>
+    /// - Parameter double: <#double description#>
+    /// - Returns: <#description#>
     static func percentage(from double: Double) -> String {
         let formatter = NumberFormatter.percentFormatter
         
