@@ -7,11 +7,15 @@
 
 import UIKit
 
-class NewsStoryTableViewCell: UITableViewCell {
+/// News story tableView Cell
+final class NewsStoryTableViewCell: UITableViewCell {
+    /// Cell identifier
     static let identifier = "NewsStoryTableViewCell"
     
+    /// Heigh of cell
     static let preferredHeight: CGFloat = 140
     
+    /// Cell viewModel
     struct ViewModel {
         let source: String
         let headline: String
@@ -26,12 +30,14 @@ class NewsStoryTableViewCell: UITableViewCell {
         }
     }
     
+    /// Source label
     private let sourceLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
+    /// Headline label
     private let headlineLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0 
@@ -39,6 +45,7 @@ class NewsStoryTableViewCell: UITableViewCell {
         return label
     }()
     
+    /// Date label
     private let dateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
@@ -46,6 +53,7 @@ class NewsStoryTableViewCell: UITableViewCell {
         return label
     }()
     
+    /// Image for story
     private let storyImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .tertiarySystemBackground
@@ -55,6 +63,8 @@ class NewsStoryTableViewCell: UITableViewCell {
         imageView.layer.masksToBounds = true
         return imageView
     }()
+    
+    // MARK: - Init
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -110,6 +120,8 @@ class NewsStoryTableViewCell: UITableViewCell {
         
     }
     
+    /// Configure view
+    /// - Parameter viewModel: View ViewModel
     public func configure(with viewModel: ViewModel) {
         headlineLabel.text = viewModel.headline
         sourceLabel.text = viewModel.source
