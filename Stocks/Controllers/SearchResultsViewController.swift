@@ -7,15 +7,21 @@
 
 import UIKit
 
+/// Delegate for search results
 protocol SearchResultsViewControllerDelegate: AnyObject {
+    /// Notify delegate of selection
     func searchResultsViewControllerDidSelect(searchResult: SearchResult)
 }
 
-class SearchResultsViewController: UIViewController {
+/// VC to show search result
+final class SearchResultsViewController: UIViewController {
+    /// Delegate to get events
     weak var delegate: SearchResultsViewControllerDelegate?
     
+    /// Collection of results
     private var results: [SearchResult] = []
     
+    /// Primary view
     private let tableView: UITableView = {
         let table = UITableView()
         //Register a cell
@@ -24,6 +30,8 @@ class SearchResultsViewController: UIViewController {
         table.isHidden = true
         return table
     }()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,18 +44,27 @@ class SearchResultsViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
+    // MARK: - Private
+    
+    /// Set up table view
     private func setUpTable() {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    // MARK: - Public
+    
+    /// Update results on VC
+    /// - Parameter results: Collection of new results
     public func update(with results: [SearchResult]) {
         self.results = results
         tableView.isHidden = results.isEmpty
         tableView.reloadData()
     }
 }
+
+// MARK: - TableView
 
 extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
