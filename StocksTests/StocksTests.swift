@@ -33,7 +33,6 @@ class StocksTests: XCTestCase {
         XCTAssertEqual(candleSticks.count, marketData.close.count)
         XCTAssertEqual(candleSticks.count, marketData.high.count)
         XCTAssertEqual(candleSticks.count, marketData.low.count)
-        XCTAssertEqual(candleSticks.count, marketData.timestamps.count)
         
         let dates = candleSticks.map { $0.date }
         for x in 0..<dates.count-1 {
