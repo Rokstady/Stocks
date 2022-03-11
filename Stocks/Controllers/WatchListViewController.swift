@@ -74,6 +74,8 @@ final class WatchListViewController: UIViewController {
     private func fetchWatchlistData() {
         let symbols = PersistenceManager.shared.watchlist
         
+        createPlaceHolderViewModels()
+        
         let group = DispatchGroup()
         
         for symbol in symbols where watchlistMap[symbol] == nil  {
@@ -100,13 +102,36 @@ final class WatchListViewController: UIViewController {
         }
     }
     
+    private func createPlaceHolderViewModels() {
+        let symbols = PersistenceManager.shared.watchlist
+        symbols.forEach{ item in
+            viewModels.append(
+                .init(
+                    symbol: item,
+                    companyName: UserDefaults.standard.string(forKey: item) ?? "Company",
+                    price: "0.00",
+                    changeColor: .systemGreen,
+                    changePercentage: "0.00",
+                    chartViewModel: .init(
+                        data: [],
+                        showLegend: false,
+                        showAxis: false,
+                        fillColor: .clear
+                    )
+                )
+            )
+        }
+        
+        self.viewModels = viewModels.sorted(by: { $0.symbol < $1.symbol })
+        tableView.reloadData()
+    }
+    
     /// Creates view models from models
     private func createViewModels() {
         var viewModels = [WatchListTableViewCell.ViewModel]()
         
         for (symbol, candleSticks) in watchlistMap {
-            let changePercentage = getChangePercentage(symbol: symbol,
-                                                       data: candleSticks)
+            let changePercentage = candleSticks.getPercentage()
             viewModels.append(
                 .init(
                     symbol: symbol,
@@ -118,31 +143,13 @@ final class WatchListViewController: UIViewController {
                         data: candleSticks.reversed().map { $0.close },
                         showLegend: false,
                         showAxis: false,
-                        fillColor: changePercentage <= 0 ? .systemRed : .systemGreen
+                        fillColor: changePercentage < 0 ? .systemRed : .systemGreen
                     )
                 )
             )
         }
         
-        
-        self.viewModels = viewModels
-    }
-    
-    /// Gets change percentage for symbol data
-    /// - Parameters:
-    ///   - symbol: Symbol to check for
-    ///   - data: Collection of data
-    /// - Returns: Double percentage
-    private func getChangePercentage(symbol: String, data: [CandleStick]) -> Double {
-        let latestDate = data [0].date
-        guard let latestClose = data.first?.close,
-              let priorClose = data.first(where: {
-                  !Calendar.current.isDate($0.date, inSameDayAs: latestDate)
-              })?.close else {
-                  return 0
-              }
-        let diff = 1 - (priorClose/latestClose)
-        return diff
+        self.viewModels = viewModels.sorted(by: { $0.symbol < $1.symbol })
     }
     
     /// Gets latest closing price
